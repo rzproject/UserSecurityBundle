@@ -1,0 +1,62 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <parameters>
+        <parameter key="rz_user_security.component.authentication.handler.login_failure_handler.class">Rz\UserSecurityBundle\Component\Authentication\Handler\LoginFailureHandler</parameter>
+        <parameter key="rz_user_security.component.authentication.handler.login_success_handler.class">Rz\UserSecurityBundle\Component\Authentication\Handler\LoginSuccessHandler</parameter>
+        <parameter key="rz_user_security.component.authentication.handler.logout_success_handler.class">Rz\UserSecurityBundle\Component\Authentication\Handler\LogoutSuccessHandler</parameter>
+        <parameter key="rz_user_security.component.authentication.tracker.login_failure_tracker.class">Rz\UserSecurityBundle\Component\Authentication\Tracker\LoginFailureTracker</parameter>
+        <parameter key="rz_user_security.lockout_session.manager.class">Rz\UserSecurityBundle\Component\LockoutManager</parameter>
+        <parameter key="rz_user_security.component.listener.blocking_login_listener.class">Rz\UserSecurityBundle\Component\Listener\BlockingLoginListener</parameter>
+        <parameter key="rz_user_security.component.listener.route_referer_listener.class">Rz\UserSecurityBundle\Component\Listener\RouteRefererListener</parameter>
+    </parameters>
+
+    <services>
+        <service id="rz_user_security.component.authentication.handler.login_failure_handler" class="%rz_user_security.component.authentication.handler.login_failure_handler.class%">
+            <argument type="service" id="router" />
+            <argument type="service" id="rz_user_security.component.authentication.tracker.login_failure_tracker" />
+            <argument>%ccdn_user_security.login_shield.route_login%</argument>
+        </service>
+
+        <service id="rz_user_security.component.authentication.handler.login_success_handler" class="%rz_user_security.component.authentication.handler.login_success_handler.class%">
+            <argument type="service" id="router" />
+            <argument>%ccdn_user_security.route_referer%</argument>
+            <argument>%ccdn_user_security.login_shield.route_login%</argument>
+        </service>
+
+        <service id="rz_user_security.component.authentication.handler.logout_success_handler" class="%rz_user_security.component.authentication.handler.logout_success_handler.class%">
+            <argument type="service" id="router" />
+            <argument>%ccdn_user_security.route_referer%</argument>
+            <argument>%ccdn_user_security.login_shield.route_login%</argument>
+        </service>
+
+        <service id="rz_user_security.component.authentication.tracker.login_failure_tracker" class="%rz_user_security.component.authentication.tracker.login_failure_tracker.class%">
+            <argument type="service" id="ccdn_user_security.model.session" />
+        </service>
+
+        <service id="rz_user_security.lockout_session.manager" class="%rz_user_security.lockout_session.manager.class%">
+            <argument type="service" id="request_stack" />
+            <argument type="service" id="session" />
+            <argument type="service" id="rz_user_security.component.authentication.tracker.login_failure_tracker" />
+            <argument>%ccdn_user_security.login_shield.force_account_recovery%</argument>
+            <argument>%ccdn_user_security.login_shield.block_pages%</argument>
+        </service>
+
+        <service id="rz_user_security.component.listener.blocking_login_listener" class="%rz_user_security.component.listener.blocking_login_listener.class%">
+            <argument type="service" id="router" />
+            <argument type="service" id="ccdn_user_security.component.authorisation.security_manager" />
+            <argument type="service" id="ccdn_user_security.component.access_denied_exception_factory" />
+            <argument>%ccdn_user_security.login_shield.force_account_recovery%</argument>
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
+        </service>
+
+        <service id="rz_user_security.component.listener.route_referer_listener" class="%rz_user_security.component.listener.route_referer_listener.class%">
+            <argument>%ccdn_user_security.route_referer.route_ignore_list%</argument>
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
+        </service>
+    </services>
+</container>
