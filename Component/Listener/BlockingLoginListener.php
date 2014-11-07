@@ -100,8 +100,8 @@ class BlockingLoginListener extends BaseBlockingLoginListener
 
         if ($result == $securityManager::ACCESS_DENIED_BLOCK) {
             $event->stopPropagation();
-
-            throw $this->exceptionFactory->createAccessDeniedException();
+            $redirectUrl = $this->router->generate('rz_user_security_lockout');
+            $event->setResponse(new RedirectResponse($redirectUrl));
         }
     }
 }

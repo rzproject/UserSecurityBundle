@@ -1,0 +1,12 @@
+{% extends 'RzPageBundle:theme/rzcms:layout.html.twig' %}
+
+{% block rz_page_theme_javascripts %}
+    {{ parent() }}
+
+    {% javascripts
+    '@RzUserSecurityBundle/Resources/public/js/jquery.countdown.js'
+    filter='?closure'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock rz_page_theme_javascripts %}

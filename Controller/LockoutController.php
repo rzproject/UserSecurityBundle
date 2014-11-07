@@ -21,14 +21,21 @@ class LockoutController extends Controller
      */
     public function showMessageAction()
     {
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        if (!is_object($user) || !$user instanceof UserInterface) {
-            throw new AccessDeniedException('This user does not have access to this section.');
-        }
 
-        return $this->render('SonataUserBundle:Profile:show.html.twig', array(
-            'user'   => $user,
-            'blocks' => $this->container->getParameter('sonata.user.configuration.profile_blocks')
-        ));
+        $lockoutManager = $this->container->get('rz_user_security.lockout_session.manager');
+
+        if ($interval = $lockoutManager->getLockoutSessionInfo()) {
+            $id = sprintf("lockout-id-%s",md5(microtime()));
+            return $this->render($this->container->getParameter('rz_user_security.component.listener.blocking_login_listener.template'),
+                array(
+                    'id'           => $id,
+                    'interval'     => $interval,
+                    'show_counter' => true
+                )
+            );
+
+        } else {
+            return $this->redirect($this->generateUrl('fos_user_security_login'), 301);
+        }
     }
 }

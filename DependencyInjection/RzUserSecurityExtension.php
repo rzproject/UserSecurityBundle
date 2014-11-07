@@ -42,6 +42,18 @@ class RzUserSecurityExtension extends Extension
         $container->setParameter('rz_user_security.component.authentication.handler.logout_success_handler.class', $config['component']['authentication']['handler']['logout_success_handler']['class']);
         $container->setParameter('rz_user_security.component.authentication.tracker.login_failure_tracker.class', $config['component']['authentication']['tracker']['login_failure_tracker']['class']);
 
+        $container->setParameter('rz_user_security.component.listener.route_referer_listener.class', $config['component']['listener']['route_referer_listener']['class']);
+
+        $container->setParameter('rz_user_security.component.listener.blocking_login_listener.class', $config['component']['listener']['blocking_login_listener']['class']);
+        $container->setParameter('rz_user_security.component.listener.blocking_login_listener.translation_domain', $config['component']['listener']['blocking_login_listener']['translation']);
+        $container->setParameter('rz_user_security.component.listener.blocking_login_listener.template', $config['component']['listener']['blocking_login_listener']['template']);
+
+        $container->setParameter('rz_user_security.lockout_session.manager.class', $config['lockout_session']['manager']['class']);
+
+
+
+
+
         return $this;
     }
 
