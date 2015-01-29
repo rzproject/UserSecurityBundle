@@ -39,7 +39,8 @@ class LoginSuccessHandler extends BaseLoginSuccessHandler
                     if(stristr($session->get('referer'), '/js/routing')) {
                         $response = new RedirectResponse($this->getRedirectUrl($request));
                     } else {
-                        $response = new RedirectResponse($this->getRedirectUrl($request, $session->get('referer')));
+                        //$response = new RedirectResponse($this->getRedirectUrl($request, $session->get('referer')));
+                        $response = new RedirectResponse($session->get('referer'));
                     }
                 } else {
                     $response = new RedirectResponse($this->getRedirectUrl($request));
