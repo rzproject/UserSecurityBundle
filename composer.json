@@ -16,7 +16,7 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "~2.5",
-        "rz/user-bundle":  "~1.0",
+        "rz/user-bundle":  "1.0.*",
         "rmzamora/ccdn-user-security-bundle": "dev-master"
     },
     "autoload": {
