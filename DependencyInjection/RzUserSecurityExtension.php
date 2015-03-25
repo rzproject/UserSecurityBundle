@@ -50,10 +50,6 @@ class RzUserSecurityExtension extends Extension
 
         $container->setParameter('rz_user_security.lockout_session.manager.class', $config['lockout_session']['manager']['class']);
 
-
-
-
-
         return $this;
     }
 

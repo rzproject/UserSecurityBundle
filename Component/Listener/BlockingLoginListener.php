@@ -52,17 +52,48 @@ class BlockingLoginListener extends BaseBlockingLoginListener
     /**
      *
      * @access public
-     * @param \Symfony\Component\Routing\RouterInterface                                              $router
-     * @param \CCDNUser\SecurityBundle\Component\Authorisation\SecurityManager                        $loginFailureTracker
+     * @param SecurityManager $securityManager
      * @param \CCDNUser\SecurityBundle\Component\Listener\AccessDeniedExceptionFactoryInterface $exceptionFactory
-     * @param array                                                                                   $forceAccountRecovery
+     * @internal param RouterInterface $router
+     * @internal param SecurityManager $loginFailureTracker
+     * @internal param array $forceAccountRecovery
      */
-    public function __construct(RouterInterface $router, SecurityManager $securityManager, AccessDeniedExceptionFactoryInterface $exceptionFactory, $forceAccountRecovery)
+    public function __construct(SecurityManager $securityManager, AccessDeniedExceptionFactoryInterface $exceptionFactory)
     {
         $this->securityManager = $securityManager;
-        $this->router = $router;
-        $this->forceAccountRecovery = $forceAccountRecovery;
         $this->exceptionFactory = $exceptionFactory;
+    }
+
+    /**
+     * @return RouterInterface
+     */
+    public function getRouter()
+    {
+        return $this->router;
+    }
+
+    /**
+     * @param RouterInterface $router
+     */
+    public function setRouter($router)
+    {
+        $this->router = $router;
+    }
+
+    /**
+     * @return array
+     */
+    public function getForceAccountRecovery()
+    {
+        return $this->forceAccountRecovery;
+    }
+
+    /**
+     * @param array $forceAccountRecovery
+     */
+    public function setForceAccountRecovery($forceAccountRecovery)
+    {
+        $this->forceAccountRecovery = $forceAccountRecovery;
     }
 
     /**
