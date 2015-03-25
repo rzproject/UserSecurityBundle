@@ -3,7 +3,7 @@
 namespace  Rz\UserSecurityBundle\Component\Authentication\Handler;
 
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,12 +31,9 @@ class LoginFailureHandler extends BaseLoginFailureHandler
         } else {
             $username = '';
         }
-
         // Make a note of the failed login.
         $this->loginFailureTracker->addAttempt($ipAddress, $username);
-        $request->getSession()->set(SecurityContext::AUTHENTICATION_ERROR, $exception);
-        $request->getSession()->getFlashBag()->set(SecurityContext::AUTHENTICATION_ERROR, $exception->getMessage());
-
+        $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
         // Send response back to browser depending on wether this is XML request or not.
         if ($request->isXmlHttpRequest() || $request->request->get('_format') === 'json') {
             $response = new Response(
