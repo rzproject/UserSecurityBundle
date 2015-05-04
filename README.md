@@ -1,5 +1,5 @@
-RzProject UserSecurityBundle README.
-===================================
+UserSecurityBundle
+==================
 
 Extension for CCDNUser SecurityBundle
 
