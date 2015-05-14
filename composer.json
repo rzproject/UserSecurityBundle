@@ -17,14 +17,14 @@
         "php": ">=5.3.3",
         "symfony/symfony": "~2.5",
         "rz/user-bundle":  "1.1.*",
-        "rmzamora/ccdn-user-security-bundle": "~1.0"
+        "rmzamora/ccdn-user-security-bundle": "~2.2"
     },
     "autoload": {
         "psr-4": { "Rz\\UserSecurityBundle\\": "" }
     },
     "extra": {
       "branch-alias": {
-        "dev-master": "1.1.x-dev"
+        "dev-master": "1.2.x-dev"
       }
     }
 }
