@@ -15,7 +15,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "~2.5",
+        "symfony/symfony": "~2.3",
         "rz/user-bundle":  "1.1.1.*",
         "rmzamora/ccdn-user-security-bundle": "2.1.1.*"
     },
