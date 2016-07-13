@@ -6,11 +6,10 @@
 
 
     <parameters>
-        <parameter key="rz_user_security.model.session.class">Rz\UserSecurityBundle\Model\FrontModel\SessionModel.php</parameter>
-        <parameter key="rz_user_security.repository.session.class">Rz\UserSecurityBundle\Model\Component\Repository\SessionRepository.php</parameter>
-        <parameter key="rz_user_security.manager.session.class">Rz\UserSecurityBundle\Model\Component\Manager\SessionManager.php</parameter>
-        <parameter key="rz_user_security.gateway.session.class">Rz\UserSecurityBundle\Model\Component\Gateway\SessionGateway.php</parameter>
-        <parameter key="rz_user_security.entity.session.class">Rz\UserSecurityBundle\Entity\Session.php</parameter>
+        <parameter key="rz_user_security.model.session.class">Rz\UserSecurityBundle\Model\FrontModel\SessionModel</parameter>
+        <parameter key="rz_user_security.repository.session.class">Rz\UserSecurityBundle\Model\Component\Repository\SessionRepository</parameter>
+        <parameter key="rz_user_security.manager.session.class">Rz\UserSecurityBundle\Model\Component\Manager\SessionManager</parameter>
+        <parameter key="rz_user_security.gateway.session.class">Rz\UserSecurityBundle\Model\Component\Gateway\SessionGateway</parameter>
     </parameters>
 
     <services>
@@ -21,6 +20,8 @@
         </service>
 
         <service id="rz_user_security.manager.session" class="%rz_user_security.manager.session.class%">
+            <argument>%rz_user_security.entity.session.class%</argument>
+            <argument type="service" id="doctrine" />
             <argument type="service" id="event_dispatcher" />
             <argument type="service" id="rz_user_security.gateway.session" />
         </service>

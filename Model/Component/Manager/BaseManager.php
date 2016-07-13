@@ -4,10 +4,12 @@ namespace Rz\UserSecurityBundle\Model\Component\Manager;
 
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Doctrine\ORM\QueryBuilder;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Rz\UserSecurityBundle\Model\Component\Gateway\GatewayInterface;
 use Rz\UserSecurityBundle\Model\FrontModel\ModelInterface;
+use Sonata\CoreBundle\Model\BaseEntityManager;
 
-abstract class BaseManager
+abstract class BaseManager extends BaseEntityManager
 {
     /**
      *
@@ -36,8 +38,9 @@ abstract class BaseManager
      * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface       $dispatcher
      * @param \Rz\UserSecurityBundle\Model\Component\Gateway\GatewayInterface $gateway
      */
-    public function __construct(EventDispatcherInterface $dispatcher, GatewayInterface $gateway)
+    public function __construct($class, ManagerRegistry $registry, EventDispatcherInterface $dispatcher, GatewayInterface $gateway)
     {
+        parent::__construct($class, $registry);
         $this->dispatcher = $dispatcher;
         $this->gateway = $gateway;
     }
