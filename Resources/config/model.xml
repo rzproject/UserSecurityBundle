@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <parameters>
+        <parameter key="rz_user_security.model.session.class">Rz\UserSecurityBundle\Model\FrontModel\SessionModel.php</parameter>
+        <parameter key="rz_user_security.repository.session.class">Rz\UserSecurityBundle\Model\Component\Repository\SessionRepository.php</parameter>
+        <parameter key="rz_user_security.manager.session.class">Rz\UserSecurityBundle\Model\Component\Manager\SessionManager.php</parameter>
+        <parameter key="rz_user_security.gateway.session.class">Rz\UserSecurityBundle\Model\Component\Gateway\SessionGateway.php</parameter>
+        <parameter key="rz_user_security.entity.session.class">Rz\UserSecurityBundle\Entity\Session.php</parameter>
+    </parameters>
+
+    <services>
+        <service id="rz_user_security.model.session" class="%rz_user_security.model.session.class%">
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="rz_user_security.repository.session" />
+            <argument type="service" id="rz_user_security.manager.session" />
+        </service>
+
+        <service id="rz_user_security.manager.session" class="%rz_user_security.manager.session.class%">
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="rz_user_security.gateway.session" />
+        </service>
+
+        <service id="rz_user_security.repository.session" class="%rz_user_security.repository.session.class%">
+            <argument type="service" id="z_user_security.gateway.session" />
+        </service>
+
+        <service id="rz_user_security.gateway.session" class="%rz_user_security.gateway.session.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument>%rz_user_security.entity.session.class%</argument>
+        </service>
+    </services>
+</container>

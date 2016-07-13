@@ -1,13 +1,21 @@
 <?php
 
-
-
 namespace Rz\UserSecurityBundle\Component\Authentication\Tracker;
 
-use CCDNUser\SecurityBundle\Model\FrontModel\SessionModel;
-use CCDNUser\SecurityBundle\Component\Authentication\Tracker\LoginFailureTracker as BaseLoginFailureTracker;
+use  Rz\UserSecurityBundle\Model\FrontModel\SessionModel;
 
-class LoginFailureTracker extends BaseLoginFailureTracker
+/**
+ *
+ * @category CCDNUser
+ * @package  SecurityBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 2.0
+ * @link     https://github.com/codeconsortium/CCDNUserSecurityBundle
+ *
+ */
+class LoginFailureTracker
 {
     /**
      *
@@ -36,11 +44,9 @@ class LoginFailureTracker extends BaseLoginFailureTracker
     public function getAttempts($ipAddress, $blockingPeriod)
     {
         // Set a limit on how far back we want to look at failed login attempts.
-        //$timeLimit = new \DateTime('-' . $blockingPeriod . ' minutes');
-        //From Andrew Aculana
-        $timeLimit = new \DateTime();
-        $timeLimit->sub(date_interval_create_from_date_string(sprintf('%s minutes', $blockingPeriod)));
+        $timeLimit = new \DateTime('-' . $blockingPeriod . ' minutes');
         $attempts = $this->sessionModel->findAllByIpAddressAndLoginAttemptDate($ipAddress, $timeLimit);
+
         return $attempts;
     }
 
