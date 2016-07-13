@@ -64,7 +64,7 @@ class Configuration implements ConfigurationInterface
                             ->addDefaultsIfNotSet()
                             ->canBeUnset()
                             ->children()
-                                ->scalarNode('class')->defaultValue('Rz\UserSecurityBundle\Entity\Session')->end()
+                                ->scalarNode('class')->defaultValue('AppBundle\Entity\UserSecurity\Session')->end()
                             ->end()
                         ->end()
                     ->end()

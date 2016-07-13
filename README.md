@@ -38,11 +38,11 @@ SecurityBundle Provides the following features:
 
 Documentation can be found in the `Resources/doc/index.md` file in this bundle:
 
-[Read the Documentation](http://github.com/rzproject/UserSecurityBundle/blob/master/Resources/doc/index.md).
+[Read the Documentation](http://github.com/rzproject/UserSecurityBundle/blob/2.0.0/Resources/doc/index.md).
 
 ## Installation.
 
-All the installation instructions are located in [documentation](http://github.com/rzproject/UserSecurityBundle/blob/master/Resources/doc/install.md).
+All the installation instructions are located in [documentation](http://github.com/rzproject/UserSecurityBundle/blob/2.0.0/Resources/doc/install.md).
 
 ## License.
 
@@ -50,7 +50,7 @@ This software is licensed under the MIT license. See the complete license file i
 
 	Resources/meta/LICENSE
 
-[Read the License](http://github.com/rzproject/UserSecurityBundle/blob/master/Resources/meta/LICENSE).
+[Read the License](http://github.com/rzproject/UserSecurityBundle/blob/2.0.0/Resources/meta/LICENSE).
 
 ## About.
 

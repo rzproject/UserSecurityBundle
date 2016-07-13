@@ -5,8 +5,6 @@ namespace Rz\UserSecurityBundle\Model\Component\Manager;
 use Rz\UserSecurityBundle\Model\Component\Manager\ManagerInterface;
 use Rz\UserSecurityBundle\Model\Component\Manager\BaseManager;
 
-use Rz\UserSecurityBundle\Entity\Session;
-
 class SessionManager extends BaseManager implements ManagerInterface
 {
     /**
@@ -18,7 +16,7 @@ class SessionManager extends BaseManager implements ManagerInterface
      */
     public function newRecord($ipAddress, $username)
     {
-        $session = new Session();
+        $session = $this->create();
 
         $session->setIpAddress($ipAddress);
         $session->setLoginAttemptUsername($username);

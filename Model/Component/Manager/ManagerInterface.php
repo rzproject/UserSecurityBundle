@@ -6,6 +6,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Doctrine\ORM\QueryBuilder;
 use Rz\UserSecurityBundle\Model\Component\Gateway\GatewayInterface;
 use Rz\UserSecurityBundle\Model\FrontModel\ModelInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 interface ManagerInterface
 {
@@ -15,7 +16,7 @@ interface ManagerInterface
      * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface       $dispatcher
      * @param \Rz\UserSecurityBundle\Model\Component\Gateway\GatewayInterface $gateway
      */
-    public function __construct(EventDispatcherInterface $dispatcher, GatewayInterface $gateway);
+    public function __construct($class, ManagerRegistry $registry, EventDispatcherInterface $dispatcher, GatewayInterface $gateway);
 
     /**
      *

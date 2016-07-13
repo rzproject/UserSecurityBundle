@@ -1,15 +1,9 @@
 <?php
 
-namespace Rz\UserSecurityBundle\Entity;
+namespace Rz\UserSecurityBundle\Model;
 
-class Session
+class Session implements SessionInterface
 {
-    /**
-     *
-     * @var int $id
-     */
-    protected $id;
-
     /**
      *
      * @var string $ipAddress
@@ -27,16 +21,6 @@ class Session
      * @var string $loginAttemptUsername
      */
     protected $loginAttemptUsername;
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set ipAddress
