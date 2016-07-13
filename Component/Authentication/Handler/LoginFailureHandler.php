@@ -2,18 +2,46 @@
 
 namespace  Rz\UserSecurityBundle\Component\Authentication\Handler;
 
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\RouterInterface;
-use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;
-use CCDNUser\SecurityBundle\Component\Authentication\Handler\LoginFailureHandler as BaseLoginFailureHandler;
 
+use Rz\UserSecurityBundle\Component\Authentication\Tracker\LoginFailureTracker;
+use Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler;
 
-class LoginFailureHandler extends BaseLoginFailureHandler
+/**
+ *
+ * @category CCDNUser
+ * @package  SecurityBundle
+ *
+ * @author   Reece Fowell <reece@codeconsortium.com>
+ * @license  http://opensource.org/licenses/MIT MIT
+ * @version  Release: 2.0
+ * @link     https://github.com/codeconsortium/CCDNUserSecurityBundle
+ *
+ */
+class LoginFailureHandler extends DefaultAuthenticationFailureHandler
 {
+    /**
+     *
+     * @access protected
+     * @var \CCDNUser\SecurityBundle\Component\Authentication\Tracker\LoginFailureTracker $loginFailureTracker
+     */
+    protected $loginFailureTracker;
+
+    /**
+     *
+     * @access public
+     * @param \CCDNUser\SecurityBundle\Component\Authentication\Tracker\LoginFailureTracker $loginFailureTracker
+     */
+    public function setLoginFailureTracker(LoginFailureTracker $loginFailureTracker)
+    {
+        $this->loginFailureTracker = $loginFailureTracker;
+    }
 
     /**
      *
@@ -31,31 +59,11 @@ class LoginFailureHandler extends BaseLoginFailureHandler
         } else {
             $username = '';
         }
+
         // Make a note of the failed login.
         $this->loginFailureTracker->addAttempt($ipAddress, $username);
-        $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
-        // Send response back to browser depending on wether this is XML request or not.
-        if ($request->isXmlHttpRequest() || $request->request->get('_format') === 'json') {
-            $response = new Response(
-                json_encode(
-                    array(
-                        'status' => 'failed',
-                        'errors' => array($exception->getMessage())
-                    )
-                )
-            );
 
-            $response->headers->set('Content-Type', 'application/json');
-        } else {
-            $response = new RedirectResponse(
-                $this->router->generate(
-                    $this->routeLogin['name'],
-                    $this->routeLogin['params']
-                )
-            );
-        }
-
-        return $response;
+        // Let Symfony decide what to do next
+        return parent::onAuthenticationFailure($request, $exception);
     }
-
 }

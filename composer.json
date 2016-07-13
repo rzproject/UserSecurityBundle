@@ -1,6 +1,6 @@
 {
     "name": "rz/user-security-bundle",
-    "description": "Extension of CCDN User Security Bundle",
+    "description": "Fork of CCDN User Security Bundle",
     "keywords": ["user", "security", "brute force", "dictionary attack", "login", "Rz Project"],
     "homepage": "http://github.com/rzproject/RzUserSecurityBundle",
     "type": "symfony-bundle",
@@ -9,15 +9,15 @@
         {
             "name": "Mell M. Zamora",
             "email": "mell@rzproject.org",
-            "homepage": "http://www.rzproject.org"
+            "homepage": "http://rzproject.github.io"
         }
     ],
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "~2.5",
-        "rz/user-bundle":  "2.0.0.*",
-        "rmzamora/ccdn-user-security-bundle": "2.5.0.*"
+        "symfony/symfony": "~2.8",
+        "doctrine/orm": "~2.4,<2.5",
+        "doctrine/doctrine-bundle": "~1.5"
     },
     "autoload": {
         "psr-4": { "Rz\\UserSecurityBundle\\": "" }
