@@ -26,7 +26,7 @@
         </service>
 
         <service id="rz_user_security.repository.session" class="%rz_user_security.repository.session.class%">
-            <argument type="service" id="z_user_security.gateway.session" />
+            <argument type="service" id="rz_user_security.gateway.session" />
         </service>
 
         <service id="rz_user_security.gateway.session" class="%rz_user_security.gateway.session.class%">
