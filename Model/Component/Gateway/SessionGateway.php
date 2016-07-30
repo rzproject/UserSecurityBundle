@@ -103,7 +103,7 @@ class SessionGateway extends BaseGateway implements GatewayInterface
      * @param  Array                      $aliases = null
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function createCountQuery($column = null, Array $aliases = null)
+    public function createCountQuery($column = null, array $aliases = null)
     {
         if (null == $column) {
             $column = 'count(' . $this->queryAlias . '.id)';
@@ -126,7 +126,7 @@ class SessionGateway extends BaseGateway implements GatewayInterface
      * @param  Array                      $aliases = null
      * @return \Doctrine\ORM\QueryBuilder
      */
-    public function createSelectQuery(Array $aliases = null)
+    public function createSelectQuery(array $aliases = null)
     {
         if (null == $aliases || ! is_array($aliases)) {
             $aliases = array($this->queryAlias);

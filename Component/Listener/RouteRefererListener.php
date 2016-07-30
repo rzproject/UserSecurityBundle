@@ -5,7 +5,6 @@ namespace Rz\UserSecurityBundle\Component\Listener;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Rz\UserSecurityBundle\Component\Listener\RouteRefererListener as BaseRouteRefererListener;
 
-
 class RouteRefererListener extends BaseRouteRefererListener
 {
     public function onKernelRequest(GetResponseEvent $event)

@@ -47,7 +47,7 @@ interface ManagerInterface
      * @param  Array                                        $aliases = null
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
-    public function createCountQuery($column = null, Array $aliases = null);
+    public function createCountQuery($column = null, array $aliases = null);
 
     /**
      *
@@ -55,7 +55,7 @@ interface ManagerInterface
      * @param  Array                                        $aliases = null
      * @return \Doctrine\Common\Collections\ArrayCollection
      */
-    public function createSelectQuery(Array $aliases = null);
+    public function createSelectQuery(array $aliases = null);
 
     /**
      *

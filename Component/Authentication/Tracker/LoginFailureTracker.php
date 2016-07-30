@@ -2,7 +2,7 @@
 
 namespace Rz\UserSecurityBundle\Component\Authentication\Tracker;
 
-use  Rz\UserSecurityBundle\Model\FrontModel\SessionModel;
+use Rz\UserSecurityBundle\Model\FrontModel\SessionModel;
 
 /**
  *
