@@ -9,7 +9,6 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 use Rz\UserSecurityBundle\Component\Authentication\Tracker\LoginFailureTracker;
 use Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler;
 

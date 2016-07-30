@@ -7,5 +7,4 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class RzUserSecurityBundle extends Bundle
 {
-    
 }
